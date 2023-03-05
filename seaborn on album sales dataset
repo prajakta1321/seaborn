@@ -1,0 +1,51 @@
+# bivariate plotsAa
+sns.distplot(auto['city-mpg'])
+plt.show()
+
+# seaborn
+
+import pandas as pd
+import seaborn as sns
+import matplotlib.pyplot as plt
+
+%matplotlib inline   # it displays the output within th notebook every time plotting is done so no need to type plt.show() every time instead use this once at starting.
+sns.set(color_codes=True)
+
+auto = pd.read_csv('Automobile_data.csv')
+
+auto.head()
+
+
+sns.distplot(auto['city-mpg'], kde = False, rug = True)   # determines the frequency of observations
+plt.show()
+
+sns.jointplot(auto['engine-size'], auto['horsepower'])
+plt.show()
+
+sns.jointplot(auto['engine-size'], auto['horsepower'], kind = "hex")
+plt.show()
+
+sns.jointplot(auto['engine-size'], auto['horsepower'], kind = "reg")
+plt.show()
+
+sns.jointplot(auto['engine-size'], auto['horsepower'], kind = 'kde')
+plt.show()
+
+# multivariate visualization
+sns.pairplot(auto[['normalized-losses' , 'engine-size','horsepower']])
+
+sns.stripplot(auto['fuel-type'] , auto['horsepower'], jitter=True)
+
+sns.swarmplot(auto['fuel-type'] , auto['horsepower'])
+
+sns.boxplot(auto['wheel-base'] , auto['horsepower'])
+
+sns.boxplot(auto['wheel-base'] , auto['horsepower'] , hue = auto['fuel-type'])
+
+sns.barplot(auto['wheel-base'] , auto['horsepower'] , hue = auto['fuel-type'])
+
+sns.countplot(auto['wheel-base'], hue = auto['fuel-type'])
+
+sns.pointplot(auto['wheel-base'] , auto['horsepower'])
+
+sns.pointplot(auto['wheel-base'] , auto['horsepower'] , hue = auto['fuel-type'])
